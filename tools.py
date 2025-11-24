@@ -4,6 +4,7 @@ from openfda.client import (
     count_classification,
     count_top_firms,
     get_many_for_year_stats,
+    count_recalls_by_state
 )
 from openfda.transforms import normalize_recall, aggregate_by_year
 
@@ -23,9 +24,11 @@ async def tool_get_recall_stats():
     many = await get_many_for_year_stats()
     years = aggregate_by_year(many)
     total = sum(item["count"] for item in class_counts)
+    by_state = await count_recalls_by_state()
     return {
         "totalCount": total,
         "recallsByClassification": [{"classification": c["term"], "count": c["count"]} for c in class_counts],
         "topFirms": [{"firmName": f["term"], "count": f["count"]} for f in firms],
         "recallsByYear": years,
+        "recallsByState": by_state,
     }

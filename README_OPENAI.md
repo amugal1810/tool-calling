@@ -147,33 +147,15 @@ Returns:
 - by classification  
 - by firm  
 - by year  
-
+- by state
 ---
 
 # 🧪 Example Queries
 
+- "Which states had the most recalls in 2022?"
 - “Find recent ibuprofen recalls”  
-- “Which firms had the most recalls?”  
+- “Which firms had the most recalls in 2020?”  
 - “How many Class I recalls in 2021?”  
 - “Give recall stats by year”  
 
----
-
-# 🛠 Troubleshooting
-
-### ❌ `TypeError: argument after ** must be a mapping, not str`
-Cause: model returns arguments as string.  
-Fix: Parse JSON using:
-
-```python
-args = json.loads(raw_args)
-```
-
-(Already included in patched `main.py`.)
-
----
-
-# 📄 License
-
-MIT License.
 

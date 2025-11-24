@@ -46,7 +46,7 @@ async def ask(req: AskRequest):
         name = call.function.name
         raw_args = call.function.arguments
 
-        # FIX: Ensure tool arguments are parsed correctly
+        # Ensure tool arguments are parsed correctly
         if isinstance(raw_args, str):
             try:
                 args = json.loads(raw_args)
@@ -66,6 +66,7 @@ async def ask(req: AskRequest):
         #     result = {"error": "Unknown tool called"}
 
         # Second LLM call (final natural-language summary)
+        print(result)
         final = await client.chat.completions.create(
             model="gpt-4.1",
             messages=[
