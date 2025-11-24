@@ -8,13 +8,6 @@ from openfda.client import (
 )
 from openfda.transforms import normalize_recall, aggregate_by_year
 
-# async def tool_search_recalls(query=None, classification=None, limit=10):
-    # search_parts = []
-    # if query:
-    #     search_parts.append(f"product_description:{query}")
-    # if classification:
-    #     search_parts.append(f'classification:"{classification}"')
-    # search_str = " AND ".join(search_parts) if search_parts else None
 async def tool_search_recalls(
     query=None,
     classification=None,
