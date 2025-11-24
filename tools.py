@@ -8,14 +8,50 @@ from openfda.client import (
 )
 from openfda.transforms import normalize_recall, aggregate_by_year
 
-async def tool_search_recalls(query=None, classification=None, limit=10):
-    search_parts = []
+# async def tool_search_recalls(query=None, classification=None, limit=10):
+    # search_parts = []
+    # if query:
+    #     search_parts.append(f"product_description:{query}")
+    # if classification:
+    #     search_parts.append(f'classification:"{classification}"')
+    # search_str = " AND ".join(search_parts) if search_parts else None
+async def tool_search_recalls(
+    query=None,
+    classification=None,
+    state=None,
+    firm=None,
+    status=None,
+    # start_date=None,
+    # end_date=None,
+    limit=10
+):
+    filters = []
+
     if query:
-        search_parts.append(f"product_description:{query}")
+        filters.append(f"search={query}")
+
     if classification:
-        search_parts.append(f'classification:"{classification}"')
-    search_str = " AND ".join(search_parts) if search_parts else None
-    raw = await search_recalls_from_openfda(search_str, limit=limit)
+        filters.append(f"classification:\"{classification}\"")
+
+    if state:
+        filters.append(f"state:\"{state}\"")
+
+    if firm:
+        # recall field is "recalling_firm"
+        filters.append(f"recalling_firm:\"{firm}\"")
+
+    if status:
+        filters.append(f"status:\"{status}\"")
+
+    # if start_date and end_date:
+    #     filters.append(f"recall_initiation_date:[{start_date} TO {end_date}]")
+    # elif start_date:
+    #     filters.append(f"recall_initiation_date:[{start_date} TO 99999999]")
+    # elif end_date:
+    #     filters.append(f"recall_initiation_date:[00000000 TO {end_date}]")
+
+    search_expr = " AND ".join(filters) if filters else None
+    raw = await search_recalls_from_openfda(search_expr, limit=limit)
     return [normalize_recall(r) for r in raw]
 
 async def tool_get_recall_stats():
