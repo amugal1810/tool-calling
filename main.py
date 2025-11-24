@@ -56,7 +56,7 @@ async def ask(req: AskRequest):
             args = raw_args or {}
         
         print(call)
-
+        result = None
         # Call the correct tool
         if name == "search_recalls":
             result = await tool_search_recalls(**args)

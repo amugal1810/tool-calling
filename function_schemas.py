@@ -32,14 +32,6 @@ search_recalls_schema = {
                     "type": "string",
                     "description": "Recall status (e.g., 'Ongoing', 'Completed', 'Terminated')"
                 },
-                # "start_date": {
-                #     "type": "string",
-                #     "description": "Start date for recall initiation (YYYYMMDD)"
-                # },
-                # "end_date": {
-                #     "type": "string",
-                #     "description": "End date for recall initiation (YYYYMMDD)"
-                # },
                 "limit": {
                     "type": "number",
                     "description": "Maximum number of results to return (default 10, max 50)"

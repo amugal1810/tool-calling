@@ -139,7 +139,12 @@ Model returns natural language summary.
 # 🧩 Tools
 
 ### 🔍 `search_recalls(query, classification, limit)`
-Fetches recall list from OpenFDA.
+Fetches recall list from OpenFDA, the tool calling function for search is made as specific as possible, the agent can search using the following params:
+    query,
+    classification,
+    state,
+    firm,
+    status,
 
 ### 📊 `get_recall_stats()`
 Returns:

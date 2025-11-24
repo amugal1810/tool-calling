@@ -14,8 +14,6 @@ async def tool_search_recalls(
     state=None,
     firm=None,
     status=None,
-    # start_date=None,
-    # end_date=None,
     limit=10
 ):
     filters = []

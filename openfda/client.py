@@ -19,11 +19,6 @@ async def count_classification():
         res = await client.get(BASE_URL, params={"count": "classification.exact"})
     return res.json().get("results", [])
 
-# async def count_top_firms(limit: int = 10):
-#     async with httpx.AsyncClient() as client:
-#         res = await client.get(BASE_URL, params={"count": "firm_name.exact", "limit": limit})
-#     return res.json().get("results", [])
-
 async def get_many_for_year_stats(limit: int = 1000):
     async with httpx.AsyncClient() as client:
         res = await client.get(BASE_URL, params={"limit": limit})
